@@ -1,0 +1,32 @@
+ASS 15: Word count in Scala
+
+
+1. source ~/.profile
+2. ls -l /opt/spark
+3. start-master.sh 
+4. stop-master.sh (to stop the earlier sessions)
+5. start-master.sh (to start the new session)
+6. spark-shell
+
+
+7.1 (Now spark logo appears and you are in scala terminal if you get (scala> ))
+7.2 (create a text file in the spark folder)
+7.3 var lines = sc.textFile("input1.txt")
+
+8. var words = lines.flatMap(_.split(" "))
+flatMap function is used in order to split the words by spaces in between
+if split(" ") not mentioned then it splits by individual letters
+
+9. var wordsfreq = words.map((_, 1))
+countng the words and every word even though repeated gets frequency as 1
+
+10. var wordCounts = wordsfreq.reduceByKey(_ + _ )
+every repeated word ko merge karke single cnt dena
+
+11. wordCounts.saveAsTextFile("myopt")
+save the ouput of wordcount in new directory
+
+12.  wordCounts.foreach(println)
+print the output 
+
+
