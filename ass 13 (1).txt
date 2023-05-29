@@ -1,0 +1,91 @@
+1.Which configuration files are required for setting the hadoop environment
+(mapred-site.xml, core-site.xml, hdfs-site.xml )
+2.What are the steps involved in setting up a Hadoop cluster ?
+3. Draw a hadoop architecture
+4. Use hadoop cluster to load a log file or text file (BigData) and execute word count example
+application that counts the number of occurrences of each word in a given input set using the
+Hadoop Map-Reduce framework on local-standalone set-up.
+
+answer 1:
+The configuration files required for setting the Hadoop environment are:
+
+mapred-site.xml
+core-site.xml
+hdfs-site.xml
+The steps involved in setting up a Hadoop cluster are:
+
+answer 2:
+Install Hadoop on the nodes in the cluster.
+Configure Hadoop.
+Start the Hadoop services.
+Test the Hadoop cluster.
+
+answer 3:
+The Hadoop architecture is a master-slave architecture. The master node is called the NameNode and the slave nodes are called DataNodes. The NameNode manages the file system namespace and regulates access to files by clients. The DataNodes store the data blocks that make up the files in the Hadoop Distributed File System (HDFS).
+
+answer 4: 
+Hadoop Steps and commands (ass 13)
+
+1. start-dfs.sh
+when it completes then check if 3 things 
+(Starting namenodes on [localhost]
+Starting datanodes
+Starting secondary namenodes [pict-OptiPlex-3020]) are started or not
+
+2.  jps
+when it completes then check if 4 things 
+(2790 NameNode
+3190 SecondaryNameNode
+2943 DataNode
+3343 Jps
+) are started or not
+
+3. start-yarn.sh
+when it completes then check if 2 things 
+Starting resourcemanager
+Starting nodemanagers
+
+4. gedit sample.txt
+open a text file and name it anything and save as __ .txt
+then it will open a file to enter text-> enter random text data and save the file
+
+5. (maybe you would need to open a new terminal) jps
+when it completes then check if 5 things 
+4353 Jps
+2790 NameNode
+3190 SecondaryNameNode
+3464 ResourceManager
+3612 NodeManager
+2943 DataNode
+
+6. hdfs dfs -mkdir /sample2
+create a new directory to generate the output (here name of output directory is sample2)
+
+7. hadoop fs -put /home/hadoop/sample.txt /sample2
+put the correct path of the ealier text file
+
+8. yarn jar /home/hadoop/hadoop-3.3.5/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.5.jar wordcount /sample2 /output
+
+run the jar file of wordcount
+
+it will run somethings and requires time -> wait till it completes and u get 
+
+(hadoop@pict-OptiPlex-3020:~$ )to enter new command
+
+9. hdfs dfs -ls /output
+shows two files
+(Found 2 items
+-rw-r--r--   3 hadoop supergroup          0 2023-05-10 12:33 /output/_SUCCESS
+-rw-r--r--   3 hadoop supergroup        391 2023-05-10 12:33 /output/part-r-00000)
+
+like this
+
+10. hdfs dfs -cat /output/part-r-00000
+write hdfs dfs -cat (space) and copy above 2 files ke second ka (/output/part-r-00000)
+
+you get the word count of text file as output
+
+11. ctrl c -> khatam assignment
+
+
+
